@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	data-th-replace="~{fragments/layout :: layout-projet(titrePage= ~{:: title}, contenuPage= ~{:: .center-main}, ressourcesSupp= ~{:: #ressources-css})}">
+<head>
+<title>Encheres.org - Détail vente</title>
+<th:block id="ressources-css">
+	<link rel="stylesheet" data-th-href="@{/css/projet-form.css}">
+	<link rel="stylesheet" data-th-href="@{/css/projet-error.css}">
+</th:block>
+
+</head>
+<body>
+	<main class="center-main">
+		<h1>Détail vente</h1>
+		
+			<div th:object="${no_article}">
+			
+			<div data-th-replace="~{fragments/fragment-errors :: frag-errors}"></div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item bg-light text-dark"><span th:text="*{nomArticle}" /></span></li>
+				<li class="list-group-item"><label>Description: </label><span th:text="*{' ' + description}" /></span></li>
+				<li class="list-group-item"><label>Catégorie: </label><span th:text="*{' ' + categorieArticle.libelle}" /></span></li>
+				<li class="list-group-item"><label>Meilleure offre: </label>
+					 <span th:text="*{prixVente}" /></span>€ par <!-- <span th:if="*{utilisateurAchete != null}" th:text="*{utilisateurAchete.pseudo}" /></span> -->
+					 <span th:text="*{utilisateurAchete != null} ? *{utilisateurAchete.pseudo} :'personne' " /></span>
+				</li>
+				<li class="list-group-item"><label>Mise à prix: </label><span th:text="*{' ' + miseAPrix + '€'}" /></span></li>
+				<li class="list-group-item"><label>Fin de l'enchère: </label><span th:text="*{dateFinEncheres}" /></span></li>
+				<li class="list-group-item"><label>Retrait: </label>
+					<div th:object="${retrait}">
+						<ul>
+							<li th:text="*{rue}"></li>
+							<li><span th:text="*{code_postal}"></span> <span th:text="*{ville}"></span> </li>
+						</ul>
+					</div>
+						
+				</li>
+				<li class="list-group-item"><label>Vendeur: </label><span th:text="*{utilisateurVend.pseudo}" /></span></li>
+			</ul>
+			
+			<form class="form-inline" th:action="@{/encheres/detail}" method="post" th:object="${enchere}">
+				<label>Ma proposition (€): </label>
+				<div class="input-group mb-3">	
+					<input type="hidden" th:field="*{articleVenduConcerne.noArticle}">
+					<input class="form-control mr-sm-2" type="number" th:field="*{montant_enchere}" th:min="*{articleVenduConcerne.prixVente + 1}" />
+					<div th:replace="~{fragments/fragment-error :: frag-error('montant_enchere')}"></div>
+					<input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Encherir" />
+				</div>
+			</form>
+
+
+		</div>
+
+	</main>
+</body>
+</html>

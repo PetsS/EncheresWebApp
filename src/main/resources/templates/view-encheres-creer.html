@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	data-th-replace="~{fragments/layout :: layout-projet(titrePage= ~{:: title},
+																							contenuPage= ~{:: .center-main},
+																							ressourcesSupp= ~{:: #ressources-css})}">
+<head>
+<title>Encheres.org - Nouvelle vente</title>
+<th:block id="ressources-css">
+	<link rel="stylesheet" data-th-href="@{/css/projet-form.css}">
+	<link rel="stylesheet" data-th-href="@{/css/projet-error.css}">
+</th:block>
+
+</head>
+<body>
+
+	<main class="center-main">
+
+		<form th:action="@{/encheres/creer}" method="post" th:object="${articleVendu}">
+			<h1>
+				Nouvelle vente
+			</h1>
+			<div data-th-replace="~{fragments/fragment-errors :: frag-errors}"></div>
+
+			<div class="form-group row">
+				<label for="idA" class="col-sm-2 col-form-label">Article</label>
+				<div class="col-sm-10">
+					<input class="form-control" placeholder="Nom d'article..." id="idA" type="text" name="nomArticle" th:field="*{nomArticle}" />
+				</div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('nomArticle')}"></div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="idDesc" class="col-sm-2 col-form-label">Description</label>
+				<div class="col-sm-10">
+					<textarea class="form-control" placeholder="Description..." id="idDesc" name="description" th:field="*{description}" ></textarea>
+				</div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('description')}"></div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="idCategorie" class="col-sm-2 col-form-label">Catégorie</label>
+				<div class="col-sm-10">
+					<select class="custom-select" id="idCategorie" th:field="*{categorieArticle.noCategorie}">
+						<option value=0>Choisir...</option>
+						<option th:each="categorie : ${listeCategories}" data-th-value="${categorie.noCategorie}" data-th-text="${categorie.libelle}"></option>
+					</select>
+				</div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('categorieArticle')}"></div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="idPhoto" class="col-sm-2 col-form-label">Photo de l'article</label>
+				<div class="col-sm-10">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit" th:onclick="window.location.href='/encheres/creer'">Uploader</button>
+				</div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('description')}"></div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="idPrix" class="col-sm-2 col-form-label">Mise à prix (€)</label>
+				<div class="col-sm-10">
+					<input class="form-control" placeholder="Prix..." id="idPrix" type="text" name="miseAPrix" min="0" th:field="*{miseAPrix}" />
+				</div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('miseAPrix')}"></div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="idDateDebutEncheres" class="col-sm-2 col-form-label">Début de l'enchère</label>
+				<div class="col-sm-10">
+					<input class="form-control" id="idDateDebutEncheres" type="datetime-local" name="dateDebutEncheres" th:value="${dateTimeFormatted}" />
+				</div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('dateDebutEncheres')}"></div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="idDateFin" class="col-sm-2 col-form-label">Fin de l'enchère</label>
+				<div class="col-sm-10">
+					<input class="form-control" id="idDateFin" type="datetime-local" name="dateFinEncheres" th:field="*{dateFinEncheres}" />
+				</div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('dateFinEncheres')}"></div>
+			</div>
+			
+			<h5>Retrait</h5>
+			
+			<div class="form-group row">
+				<label for="idRue" class="col-sm-2 col-form-label">Rue</label>
+				<div class="col-sm-10">
+					<input class="form-control" placeholder="Numéro d'adresse et nom de rue..."  id="idRue" type="text" name="lieuRetrait.rue" th:value="*{lieuRetrait.rue}" /></div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('lieuRetrait.rue')}"></div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="idCP" class="col-sm-2 col-form-label">Code Postal</label>
+				<div class="col-sm-10">
+					<input class="form-control" id="idCP"  placeholder="Code Postal..." type="text" name="lieuRetrait.code_postal" th:value="*{lieuRetrait.code_postal}" /></div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('lieuRetrait.rue')}"></div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="idVille" class="col-sm-2 col-form-label">Ville</label>
+				<div class="col-sm-10">
+					<input class="form-control" id="idVille"  placeholder="Ville..." type="text" name="lieuRetrait.ville" th:value="*{lieuRetrait.ville}" /></div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('lieuRetrait.ville')}"></div>
+			</div>
+			
+			<div >
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Enregistrer</button>
+				<button class="btn btn-outline-success my-2 my-sm-0" type="button" th:onclick="window.location.href='/encheres'">Annuler</button>
+			</div>
+		
+		</form>
+		<!-- <div>
+			<form id="formulaireDelete" th:action="@{/utilisateurs/profil/supprimer}" method="post">
+				<button type="button" th:onclick="confirmationDelete()">Supprimer</button>
+			</form>
+			<script>
+				function confirmationDelete() {
+					if (confirm("Êtes-vous sûr de vouloir supprimer votre compte ?")) {
+						document.getElementById("formulaireDelete").submit();
+				}
+			</script>
+		</div> -->
+	</main>
+</body>
+</html>

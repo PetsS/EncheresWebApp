@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-th-replace="~{fragments/layout :: layout-projet(titrePage= ~{:: title},
+																							contenuPage= ~{:: .center-main},
+																							ressourcesSupp= ~{:: #ressources-css})}">
+<head>
+<title>Connexion</title>
+<th:block id="ressources-css">
+	<link rel="stylesheet" data-th-href="@{/css/projet-form.css}">
+	<link rel="stylesheet" data-th-href="@{/css/projet-error.css}">
+</th:block>
+
+</head>
+<body>
+	
+<main class="center-main">
+	<form th:action="@{/login}" method="post" >
+		<h1>Connexion</h1>
+		
+		<div th:if=${param.logout}>Vous vous êtes déconnecter</div> <!-- Si on appelle le 'logout' parametre dans le urle, ce div s'affiche sur la page -->
+		<div th:if=${param.error}>Erreur d'email ou de mot de passe</div> <!-- Ce ligne affiche en cas de mauvaise entre -->
+		
+		<div class="form-group row">
+			<label for="idUsername" class="col-sm-2 col-form-label">Pseudo</label>
+			<div class="col-sm-10">
+				<input class="form-control" placeholder="Utilisateur..." id="idUsername" type="text" name="username" />
+			</div>
+		</div>
+		
+		<div class="form-group row">
+			<label for="idMP" class="col-sm-2 col-form-label">Mot de passe</label>
+			<div class="col-sm-10">
+				<input class="form-control" placeholder="Mot de passe..." id="idMP" type="password" name="password" />
+			</div>
+		</div>
+		
+		<div class="form-group row">
+			<div class="col-sm-10">
+				<a th:href="@{/}" >Mot de passe oublié</a>
+			</div>
+		</div>
+		
+		<div>
+			<button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Connexion</button>
+			<button class="btn btn-outline-success my-2 my-sm-0"  type="button" th:onclick="window.location.href='utilisateurs/creer'">Créer un compte</button>
+		</div>
+
+	</form>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- ~{:: #ressources-css} recupère le contenu d'un block en fonction de son id -->
+<html xmlns:th="http://www.thymeleaf.org"
+	data-th-replace="~{fragments/layout :: layout-projet(titrePage= ~{:: title},
+																							contenuPage= ~{:: .center-main},
+																							ressourcesSupp= ~{:: #ressources-css})}">
+<head>
+<title>Encheres</title>
+
+<th:block id="ressources-css">
+	<link rel="stylesheet" data-th-href="@{/css/projet-table.css}" />
+</th:block>
+
+</head>
+<body>
+
+
+	<main class="center-main">
+		<h1>Liste des enchères</h1>
+		<div>
+			<form class="form-inline" th:action="@{/}" method="get">
+				<input class="form-control mr-sm-2" placeholder="Rechercher une article..." type="text" name="keyword" id="keyword" size="50" th:value="${keyword}"/>
+					
+				<div class="input-group mb-3">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Rechercher</button>
+					<button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="clearSearch()" >Effacer</button>
+				
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="inputGroupSelect01">Catégories</label>
+					</div>
+					<select class="custom-select" id="inputGroupSelect01" name="key" th:value="${categorie.noCategorie}">
+						<option value=0>Choisir...</option>
+						<option th:each="c : ${listeCategories}" data-th-value="${c.noCategorie}" data-th-text="${c.libelle}"></option>
+					</select>
+				</div>
+					
+			</form>
+		</div>
+		<table class="table">
+			<thead>
+			    <tr>
+				    <th scope="col">Articles</th>
+				    <th scope="col">Prix</th>
+				    <th scope="col">Date fin d'enchère</th>
+				   	<th scope="col">Vendeur</th>
+				   	<th scope="col">Détails</th>
+			    </tr>
+			 </thead>	
+		
+			<tbody>
+				<tr data-th-each="item : ${articleVendus}">
+					<td data-th-text="${item.nomArticle}"></td>
+					<td th:text="${item.prixVente == 0} ? ${item.miseAPrix} : ${item.prixVente}"></td>
+					<td data-th-text="${item.dateFinEncheres}"></td>
+					<td data-th-text="${item.utilisateurVend.pseudo}"></td>
+					<td>
+						<a class="btn btn-outline-success my-2 my-sm-0" data-th-href="@{/encheres/detail(no_article=${item.noArticle})}">Info</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	<script type="text/javascript">
+		function clearSearch() {
+			window.location = "[[@{/}]]";
+		}
+	</script>
+
+	</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

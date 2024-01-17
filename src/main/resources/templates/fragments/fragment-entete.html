@@ -1,0 +1,67 @@
+<header xmlns:th="http://www.thymeleaf.org" th:fragment="frag-entete">
+
+	<!-- <h1 id="nav-title">
+		<a href="/encheres">Encheres.org</a>
+	</h1> -->
+	<!-- <div th:if="${#authorization.expression('isAuthenticated()')}">
+		<span th:text="${#authentication.name}"></span> <span
+			th:text="${#authentication.principal.authorities}"></span> <span
+			th:text="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"></span>
+
+		<span th:text="${utilisateurSession}"></span> <span
+			th:text="${categorieSession}"></span>
+	</div> -->
+
+	<!-- <nav>
+		<ul>
+			<li th:if="${!#authorization.expression('isAuthenticated()')}"><a
+				data-th-href="@{/utilisateurs/creer}">S'inscrire</a></li>
+			<li th:if="${#authorization.expression('isAuthenticated()')}"><a
+				data-th-href="@{/encheres/creer}">Vendre un article</a></li>
+
+			<li th:if="${!#authorization.expression('isAuthenticated()')}"><a
+				data-th-href="@{/login}">Connexion</a></li>
+			<li th:if="${#authorization.expression('isAuthenticated()')}"><a
+				data-th-href="@{/utilisateurs/profil}">Mon profil</a></li>
+			<li th:if="${#authorization.expression('isAuthenticated()')}"><a
+				data-th-href="@{/logout}">Déconnection</a></li>
+
+		</ul>
+	</nav> -->
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="/encheres">
+			<img src="/images/logoEncheres.png" width="30" height="30" class="d-inline-block align-top" alt="Encheres.org">
+			Encheres.org
+		</a>
+
+		<div class="navbar-nav" th:if="${#authorization.expression('isAuthenticated()')}">
+			<span class="nav-item nav-link disabled" th:text="${'Bienvenue ' + #authentication.name}"></span>
+		</div>
+		
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav"
+			aria-controls="navbarNav" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				
+				<li class="nav-item active" th:if="${!#authorization.expression('isAuthenticated()')}">
+					<a class="nav-link" data-th-href="@{/utilisateurs/creer}">S'inscrire</a></li>
+				<li class="nav-item active" th:if="${#authorization.expression('isAuthenticated()')}">
+					<a class="nav-link" data-th-href="@{/encheres/creer}">Vendre un article</a></li>
+				<li class="nav-item active" th:if="${!#authorization.expression('isAuthenticated()')}">
+					<a class="nav-link" data-th-href="@{/login}">Connexion</a></li>
+				<li class="nav-item active" th:if="${#authorization.expression('isAuthenticated()')}">
+					<a class="nav-link" data-th-href="@{/utilisateurs/profil}">Mon profil</a></li>
+				<li class="nav-item active" th:if="${#authorization.expression('isAuthenticated()')}">
+					<a class="nav-link" data-th-href="@{/logout}">Déconnexion</a></li>
+
+			</ul>
+		</div>
+	</nav>
+
+</header>

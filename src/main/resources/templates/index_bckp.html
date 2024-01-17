@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<!-- ~{:: title} -> récupère le contenu de la balise title -->
+<!-- ~{:: .center-main} - récupère le contenu de la balise définie avec la class css "center-main" -->
+<html xmlns="http://www.thymeleaf.org" data-th-replace="~{fragments/layout :: layout-projet(titrePage= ~{:: title},
+																							contenuPage= ~{:: .center-main},
+																							ressourcesSupp= ~{})}">
+
+<head>
+
+<title>Encheres.org</title>
+
+
+</head>
+<body>
+	
+	
+	<main class="center-main">
+		Bienvenue - page d'acceuil (Liste d'Encheères)
+		
+	</main>
+	
+	
+	
+	
+	
+</body>
+</html>

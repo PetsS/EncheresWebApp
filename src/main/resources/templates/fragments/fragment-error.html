@@ -1,0 +1,10 @@
+<!-- Affichage d'un message global s'il y a des erreurs -->
+<ul xmlns:th="http://www.thymeleaf.org" data-th-fragment="frag-error(inputName)"
+	th:if="${#fields.hasErrors(inputName)}"
+	class="cards"
+	>
+	
+	<li th:each="err : ${#fields.errors(inputName)}" th:text="${err}"></li>
+	<li th:if="${inputName == 'confirm_mot_de_passe'}" th:errors="*{confirm_mot_de_passe}"></li>
+	
+</ul>

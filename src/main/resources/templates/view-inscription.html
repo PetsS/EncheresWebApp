@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-th-replace="~{fragments/layout :: layout-projet(titrePage= ~{:: title},
+																							contenuPage= ~{:: .center-main},
+																							ressourcesSupp= ~{:: #ressources-css})}">
+<head>
+<title>Encheres.org - Inscription</title>
+<th:block id="ressources-css">
+	<link rel="stylesheet" data-th-href="@{/css/projet-form.css}">
+	<link rel="stylesheet" data-th-href="@{/css/projet-error.css}">
+</th:block>
+
+</head>
+<body>
+	
+<main class="center-main">
+	<form th:action="@{/utilisateurs/creer}" method="post" th:object="${utilisateur}">
+		<h1>Inscription</h1>
+		<div data-th-replace="~{fragments/fragment-errors :: frag-errors}"></div>
+		
+			<div class="form-group row">
+				<label for="idUsername" class="col-sm-2 col-form-label">Pseudo</label>
+				<div class="col-sm-10">
+					<input class="form-control" placeholder="Pseudo..." id="idUsername" type="text" name="pseudo" th:field="*{pseudo}" />
+				</div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('pseudo')}"></div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="idNom" class="col-sm-2 col-form-label">Nom</label>
+				<div class="col-sm-10">
+					<input class="form-control" placeholder="Nom..." id="idNom" type="text" name="nom" th:field="*{nom}" />
+				</div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('nom')}"></div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="idPrenom" class="col-sm-2 col-form-label">Prénom</label>
+				<div class="col-sm-10">
+					<input class="form-control" placeholder="Prénom..." id="idPrenom" type="text" name="prenom" th:field="*{prenom}" />
+				</div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('prenom')}"></div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="idEmail" class="col-sm-2 col-form-label">Email</label>
+				<div class="col-sm-10">
+					<input class="form-control" placeholder="Email..." id="idEmail" type="text" name="email" th:field="*{email}" />
+				</div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('email')}"></div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="idTelephone" class="col-sm-2 col-form-label">Téléphone</label>
+				<div class="col-sm-10">
+					<input class="form-control" placeholder="Telephone..." id="idTelephone" type="text" name="telephone" th:field="*{telephone}" />
+				</div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('telephone')}"></div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="idRue" class="col-sm-2 col-form-label">Rue</label>
+				<div class="col-sm-10">
+					<input class="form-control" placeholder="Numéro d'adresse et nom de rue..." id="idRue" type="text" name="rue" th:field="*{rue}" />
+				</div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('rue')}"></div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="idCP" class="col-sm-2 col-form-label">Code Postal</label>
+				<div class="col-sm-10">
+					<input class="form-control" placeholder="Telephone..." id="idCP" type="text" name="code_postal" th:field="*{code_postal}" />
+				</div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('code_postal')}"></div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="idVille" class="col-sm-2 col-form-label">Ville</label>
+				<div class="col-sm-10">
+					<input class="form-control" placeholder="Ville..." id="idVille" type="text" name="ville" th:field="*{ville}" />
+				</div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('ville')}"></div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="idMP" class="col-sm-2 col-form-label">Mot de passe</label>
+				<div class="col-sm-10">
+					<input class="form-control" placeholder="Mot de passe..." id="idMP" type="password" name="mot_de_passe" th:field="*{mot_de_passe}" />
+				</div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('mot_de_passe')}"></div>
+			
+				<label for="idMPC" class="col-sm-2 col-form-label">Confirmation</label>
+				<div class="col-sm-10">
+					<input class="form-control" placeholder="Confirmation de mot de passe..." id="idMPC" type="password" name="confirm_mot_de_passe" th:field="*{confirm_mot_de_passe}" />
+				</div>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('confirm_mot_de_passe')}"></div>
+			
+			</div>
+			
+			<div class="form-group row">
+				<div class="col-sm-10">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Créer</button>
+					<button class="btn btn-outline-success my-2 my-sm-0" type="button" th:onclick="window.location.href='/encheres'">Annuler</button>
+				</div>
+			</div>
+		
+	</form>
+	
+</main>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	data-th-replace="~{fragments/layout :: layout-projet(titrePage= ~{:: title}, contenuPage= ~{:: .center-main}, ressourcesSupp= ~{:: #ressources-css})}">
+<head>
+<title>Encheres.org - Inscription</title>
+<th:block id="ressources-css">
+	<link rel="stylesheet" data-th-href="@{/css/projet-form.css}">
+</th:block>
+
+</head>
+<body>
+	<main class="center-main">
+		<h1>Mon Profil</h1>
+		<div th:object="${utilisateur}">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item bg-light text-dark"><span th:text="*{pseudo}" /></span></li>
+				<li class="list-group-item"><label>Nom: </label><span th:text="*{' ' + nom}" /></span></li>
+				<li class="list-group-item"><label>Prenom: </label><span th:text="*{' ' + prenom}" /></span></li>
+				<li class="list-group-item"><label>Email: </label><span th:text="*{' ' + email}" /></span></li>
+				<li class="list-group-item"><label>Téléphone: </label><span th:text="*{' ' + telephone}" /></span></li>
+				<li class="list-group-item"><label>Rue: </label><span th:text="*{' ' + rue}" /></span></li>
+				<li class="list-group-item"><label>Code postal: </label><span th:text="*{' ' + code_postal}" /></span></li>
+				<li class="list-group-item"><label>Ville: </label><span th:text="*{' ' + ville}" /></span></li>
+			</ul>
+
+			<button class="btn btn-outline-success my-2 my-sm-0"  type="button" th:onclick="window.location.href='profil/modifier'">Modifier</button>
+			
+
+
+
+
+		</div>
+
+
+
+
+
+
+
+		<!-- 
+	<form th:action="@{/utilisateurs/creer}" method="post" th:object="${utilisateur}">
+		<h1>Inscription - Mon Profil</h1>
+		<div data-th-replace="~{fragments/fragment-errors :: frag-errors}"></div>
+		
+		<ul>
+			<li>
+				<label>Pseudo</label>
+				<input id="idUsername" type="text" name="pseudo" th:field="*{pseudo}"/>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('pseudo')}"></div>
+			</li>
+			<li>
+				<label>Nom</label>
+				<input id="idNom" type="text" name="nom" th:field="*{nom}"/>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('nom')}"></div>
+			</li>
+			<li>
+				<label>Prénom</label>
+				<input id="idPrenom" type="text" name="prenom" th:field="*{prenom}"/>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('prenom')}"></div>
+			</li>
+			<li>
+				<label>Email</label>
+				<input id="idEmail" type="text" name="email" th:field="*{email}"/>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('email')}"></div>
+			</li>
+			<li>
+				<label>Téléphone</label>
+				<input id="idTel" type="text" name="telephone" th:field="*{telephone}"/>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('telephone')}"></div>
+			</li>
+			<li>
+				<label>Rue</label>
+				<input id="idRue" type="text" name="rue" th:field="*{rue}"/>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('rue')}"></div>
+			</li>
+			<li>
+				<label>Code Postal</label>
+				<input id="idCP" type="text" name="code_postal" th:field="*{code_postal}"/>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('code_postal')}"></div>
+			</li>
+			<li>
+				<label>Ville</label>
+				<input id="idVille" type="text" name="ville" th:field="*{ville}"/>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('ville')}"></div>
+			</li>
+			<li>
+				<label>Mot de passe</label>
+				<input id="idPassword" type="password" name="mot_de_passe" th:field="*{mot_de_passe}"/>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('mot_de_passe')}"></div>
+			</li>
+			<li>
+				<label>Confirmation</label>
+				<input id="idConfirmationPassword" type="password" name="confirm_mot_de_passe" th:field="*{confirm_mot_de_passe}"/>
+				<div data-th-replace="~{fragments/fragment-error :: frag-error('confirm_mot_de_passe')}"></div>
+			</li>
+			
+			TODO Créer
+			<li>
+				<button type="submit">Créer</button>
+			</li>
+			<li>
+				<button type="reset" th:href="@{/}">Annuler</button>
+			</li>
+			
+		</ul>
+
+	</form> -->
+
+
+
+	</main>
+</body>
+</html>
